@@ -15,8 +15,6 @@ We also have notes in [**our wiki**](https://github.com/gothinkster/react-redux-
 
 ## Getting started
 
- 
-
 You can view a live demo over at https://react-redux.realworld.io/
 
 To get the frontend running locally:
