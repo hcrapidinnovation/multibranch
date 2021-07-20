@@ -1,10 +1,41 @@
 properties([pipelineTriggers([githubPush()])])
-pipeline{
-    agent any
-    stages{
-        stage('checkou'){
+pipeline {
+agent any
+    parameters {
+        string(name: 'delete_container', defaultValue: 'BUST-referral-backend')
+        string(name: 'delete_image', defaultValue: 'BUST-referral')
+        string(name: 'branch', defaultValue: 'main')
+        credentialParam(name: 'gitcredentials', defaultValue: 'gitcredentials')
+    }
+    stages {
+        stage('Code Checkout'){
+             agent {label 'master'}
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/devadikhagesh/multibranch.git']]])
+                echo "code checkout from main branch"
+
+                git ( url: 'https://github.com/BUST-Development/BUST-referral-backend.git/' ,credentialsId: "${gitcredentials}", branch: "${branch}")
+            }
+        }
+     stage('Clear image and container'){
+          agent {label 'master'}
+          steps{
+                sh '''
+                    echo "container and image remove"
+                    sudo docker stop ${delete_container}
+                    sudo docker rm ${delete_container}
+                    sudo docker rmi ${delete_image}
+                ''' 
+            }
+        }
+        stage('Run Docker container'){
+             agent {label 'master'}
+            steps{
+                sh '''
+                    echo "Container Running"
+                    ls
+                    sudo docker-compose up -d
+                    echo "Finished"
+                '''
             }
         }
     }
