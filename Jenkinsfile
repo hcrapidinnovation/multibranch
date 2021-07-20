@@ -33,7 +33,7 @@ agent any
                 sh '''
                     echo "Container Running"
                     ls
-                    sudo sudo docker run --name ${delete_container} -d -p 3000:3000 ${delete_image}
+                    sudo docker run --name ${delete_container} -d -p 3000:3000 ${delete_image}
                     echo "Finished"
                 '''
             }
