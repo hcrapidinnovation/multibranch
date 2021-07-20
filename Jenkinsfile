@@ -13,7 +13,7 @@ agent any
             steps{
                 echo "code checkout from main branch"
 
-                git ( url: 'https://github.com/BUST-Development/BUST-referral-backend.git/' ,credentialsId: "${gitcredentials}", branch: "${branch}")
+                git ( url: 'https://github.com/devadikhagesh/multibranch.git/' ,credentialsId: "${gitcredentials}", branch: "${branch}")
             }
         }
      stage('Clear image and container'){
@@ -33,7 +33,7 @@ agent any
                 sh '''
                     echo "Container Running"
                     ls
-                    sudo docker-compose up -d
+                    sudo sudo docker run --name ${delete_container} -d -p 3000:3000 ${delete_image}
                     echo "Finished"
                 '''
             }
