@@ -4,7 +4,7 @@ agent any
     parameters {
         string(name: 'delete_container', defaultValue: 'BUST-referral-backend')
         string(name: 'delete_image', defaultValue: 'BUST-referral')
-        string(name: 'branch', defaultValue: 'main')
+        string(name: 'branch', defaultValue: 'prod')
         credentials(name: 'gitcredentials', defaultValue: 'gitcredentials')
     }
     stages {
