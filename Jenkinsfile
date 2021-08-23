@@ -5,7 +5,7 @@ agent any
         string(name: 'delete_container', defaultValue: 'BUST-referral-backend-app')
         string(name: 'delete_image', defaultValue: 'BUST-referral-image')
         string(name: 'branch', defaultValue: 'prod')
-        credentials(name: 'gitcredentials',type: 'Username with password' defaultValue: 'gitcredentials')
+        credentials(name: 'gitcredentials', type: 'Username with password', defaultValue: 'gitcredentials')
     }
     stages {
         stage('Code Checkout'){
